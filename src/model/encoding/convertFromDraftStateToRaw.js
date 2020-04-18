@@ -42,7 +42,7 @@ const insertRawBlock = (
   rawBlocks: Array<RawDraftContentBlock>,
   blockCacheRef: *,
 ) => {
-  if (block instanceof ContentBlock) {
+  if (block.__proto__.toString().startsWith('ContentBlock')) {
     rawBlocks.push(createRawBlock(block, entityMap));
     return;
   }

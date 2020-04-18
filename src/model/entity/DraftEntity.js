@@ -130,6 +130,10 @@ const DraftEntity: DraftEntityMapObject = {
     return DraftEntity.__create(type, mutability, data);
   },
 
+  all: function(): Object {
+    return instances.toJS();
+  },
+
   /**
    * WARNING: This method will be deprecated soon!
    * Please use 'contentState.addEntity' instead.

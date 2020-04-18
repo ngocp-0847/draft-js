@@ -524,7 +524,7 @@ class ContentBlocksBuilder {
    */
   _trimCurrentText() {
     const l = this.currentText.length;
-    let begin = l - this.currentText.trimLeft().length;
+    let begin = 0;
     let end = this.currentText.trimRight().length;
 
     // We should not trim whitespaces for which an entity is defined.
@@ -552,7 +552,7 @@ class ContentBlocksBuilder {
    */
   _addTextNode(node: Node) {
     let text = node.textContent;
-    const trimmedText = text.trim();
+    const trimmedText = text;
 
     // If we are not in a pre block and the trimmed content is empty,
     // normalize to a single space.
