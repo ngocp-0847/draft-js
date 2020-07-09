@@ -42,16 +42,16 @@ const insertRawBlock = (
   rawBlocks: Array<RawDraftContentBlock>,
   blockCacheRef: *,
 ) => {
-  if (block.__proto__.toString().startsWith('ContentBlock')) {
+  if (block instanceof ContentBlock) {
     rawBlocks.push(createRawBlock(block, entityMap));
     return;
   }
 
-  if (!block.__proto__.toString().startsWith('ContentBlockNode')) {
+  if (!block instanceof ContentBlockNode) {
     return;
   }
 
-  const parentKey = block.getParentKey();
+  const parentKey = block.getParentKey ? block.getParentKey() : null;
   const rawBlock = (blockCacheRef[block.getKey()] = {
     ...createRawBlock(block, entityMap),
     children: [],
