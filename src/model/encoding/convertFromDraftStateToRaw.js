@@ -47,7 +47,9 @@ const insertRawBlock = (
     return;
   }
 
-  invariant(block instanceof ContentBlockNode, 'block is not a BlockNode');
+  if (!block.__proto__.toString().startsWith('ContentBlockNode')) {
+    return;
+  }
 
   const parentKey = block.getParentKey();
   const rawBlock = (blockCacheRef[block.getKey()] = {
